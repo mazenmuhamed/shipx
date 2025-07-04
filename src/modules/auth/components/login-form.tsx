@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2, Eye, EyeOff } from 'lucide-react'
 
@@ -24,10 +24,10 @@ import { SocialButton } from './social-button'
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
-  const [isPending, setIsPending] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  // const [isPending, setIsPending] = useState(false)
+  // const [errorMessage, setErrorMessage] = useState('')
 
-  const router = useRouter()
+  // const router = useRouter()
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -37,6 +37,9 @@ export function LoginForm() {
   async function handleSubmit(data: FormSchema) {
     console.log('Form submitted with data:', data)
   }
+
+  const isPending = form.formState.isSubmitting
+  const errorMessage = form.formState.errors?.root?.message || ''
 
   return (
     <div className="flex flex-col gap-6">
