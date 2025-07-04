@@ -1,4 +1,4 @@
 ## Live Preview 💻
 
-[Explore it now](https://shipx-ochre.vercel.app/)
+[https://shipx-ochre.vercel.app/](https://shipx-ochre.vercel.app/)
 
