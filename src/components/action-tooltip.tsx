@@ -16,6 +16,7 @@ type Props = {
   children?: React.ReactNode
   side?: TooltipContentProps['side']
   onClick?: VoidFunction
+  contentClassName?: string
 }
 
 export function ActionTooltip({
@@ -24,6 +25,7 @@ export function ActionTooltip({
   asChild,
   className,
   onClick,
+  contentClassName,
   side = 'top',
 }: Props) {
   return (
@@ -35,7 +37,10 @@ export function ActionTooltip({
       >
         {children}
       </TooltipTrigger>
-      <TooltipContent side={side} className={cn('font-medium select-none')}>
+      <TooltipContent
+        side={side}
+        className={cn('font-medium select-none', contentClassName)}
+      >
         <p>{tooltip}</p>
       </TooltipContent>
     </Tooltip>
