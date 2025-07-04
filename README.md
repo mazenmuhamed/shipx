@@ -1,5 +1,4 @@
-## Live Preview
+## Live Preview 💻
 
-```bash
-https://shipx-ochre.vercel.app/
-```
+[Explore it now](https://shipx-ochre.vercel.app/)
+
