@@ -21,7 +21,7 @@ export function HeroSection() {
       >
         <ShinyButton className="flex size-full items-center justify-center p-0">
           <Image
-            src="/icons/logo.svg"
+            src="logos/logo.svg"
             alt="ShipX Logo"
             width={200}
             height={200}
@@ -89,49 +89,49 @@ export function HeroSection() {
           inViewMargin="-50px"
         >
           <Image
-            src="/icons/uber-logo.svg"
+            src="logos/uber-logo.svg"
             alt="Uber"
             width={50}
             height={40}
             className="h-5 w-auto object-contain"
           />
           <Image
-            src="/icons/headspace-logo.svg"
+            src="logos/headspace-logo.svg"
             alt="Headspace"
             width={50}
             height={40}
             className="h-7 w-auto object-contain"
           />
           <Image
-            src="/icons/meta-logo.svg"
+            src="logos/meta-logo.svg"
             alt="Meta"
             width={50}
             height={40}
             className="h-5 w-auto object-contain"
           />
           <Image
-            src="/icons/airbnb-logo.svg"
+            src="logos/airbnb-logo.svg"
             alt="Airbnb"
             width={50}
             height={40}
             className="h-7 w-auto object-contain"
           />
           <Image
-            src="/icons/revolut-logo.svg"
+            src="logos/revolut-logo.svg"
             alt="Revolut"
             width={50}
             height={40}
             className="h-4 w-auto object-contain"
           />
           <Image
-            src="/icons/metalab-logo.svg"
+            src="logos/metalab-logo.svg"
             alt="Metalab"
             width={50}
             height={40}
             className="h-[1.2rem] w-auto object-contain"
           />
           <Image
-            src="/icons/pinterest-logo.svg"
+            src="logos/pinterest-logo.svg"
             alt="Pinterest"
             width={50}
             height={40}

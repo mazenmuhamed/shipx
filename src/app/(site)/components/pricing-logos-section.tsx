@@ -25,49 +25,49 @@ export function PricingLogosSection() {
       <Marquee className="items-center [--duration:40s]">
         <div className="flex flex-wrap items-center justify-center gap-20">
           <Image
-            src="/icons/uber-logo.svg"
+            src="logos/uber-logo.svg"
             alt="Uber"
             width={50}
             height={50}
             className="ml-16 h-6 w-auto object-contain md:h-7"
           />
           <Image
-            src="/icons/headspace-logo.svg"
+            src="logos/headspace-logo.svg"
             alt="Headspace"
             width={50}
             height={50}
             className="h-6 w-auto object-contain md:h-7"
           />
           <Image
-            src="/icons/meta-logo.svg"
+            src="logos/meta-logo.svg"
             alt="Meta"
             width={50}
             height={50}
             className="h-6 w-auto object-contain md:h-7"
           />
           <Image
-            src="/icons/airbnb-logo.svg"
+            src="logos/airbnb-logo.svg"
             alt="Airbnb"
             width={50}
             height={50}
             className="h-8 w-auto object-contain md:h-9"
           />
           <Image
-            src="/icons/revolut-logo.svg"
+            src="logos/revolut-logo.svg"
             alt="Revolut"
             width={50}
             height={50}
             className="h-6 w-auto object-contain md:h-7"
           />
           <Image
-            src="/icons/metalab-logo.svg"
+            src="logos/metalab-logo.svg"
             alt="Metalab"
             width={50}
             height={50}
             className="h-6 w-auto object-contain md:h-7"
           />
           <Image
-            src="/icons/pinterest-logo.svg"
+            src="logos/pinterest-logo.svg"
             alt="Pinterest"
             width={50}
             height={50}

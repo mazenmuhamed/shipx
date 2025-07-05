@@ -23,7 +23,7 @@ export function SocialButton({ provider, variant = 'default' }: Props) {
   return (
     <Button variant={variant} onClick={handleSocialSignIn}>
       <Image
-        src={`/icons/${provider}-logo.svg`}
+        src={`logos/${provider}-logo.svg`}
         alt={`${provider} logo`}
         width={21}
         height={21}

@@ -38,7 +38,7 @@ export function Navbar({ className }: { className?: string }) {
       >
         <Link href="/" className="flex items-center">
           <Image
-            src="/icons/logo.svg"
+            src="logos/logo.svg"
             alt="ShipX"
             width={40}
             height={40}

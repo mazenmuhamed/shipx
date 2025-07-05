@@ -13,7 +13,7 @@ export function PricingPageView() {
         <PricingLogosSection />
         <PricingFAQs />
       </main>
-      <Footer className="bg-background text-foreground dark:bg-background relative [&_img]:invert-0" />
+      <Footer className="bg-background text-foreground dark:bg-background relative [&_img]:invert-0 dark:[&_img]:invert" />
     </div>
   )
 }

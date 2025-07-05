@@ -4,7 +4,7 @@ export default function Loading() {
   return (
     <div className="flex h-svh items-center justify-center">
       <Image
-        src="/icons/logo.svg"
+        src="logos/logo.svg"
         alt="ShipX Logo"
         width={140}
         height={140}

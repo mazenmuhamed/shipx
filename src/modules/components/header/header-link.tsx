@@ -1,38 +1,51 @@
 'use client'
 
 import Link from 'next/link'
+import { motion } from 'motion/react'
 import { LucideProps } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
+import { Button } from '@/components/ui/button'
 import { ActionTooltip } from '@/components/action-tooltip'
 
 type Props = {
-  label: string
+  tooltip: string
   url: string
   icon: React.ElementType<LucideProps>
   isActive: boolean
 }
 
-export function HeaderLink({ label, url, isActive, icon: Icon }: Props) {
+export function HeaderLink({ tooltip, url, isActive, icon: Icon }: Props) {
   return (
-    <ActionTooltip tooltip={label} contentClassName="md:hidden" side="right">
-      <Link
-        href={url}
-        className="group focus-visible:border-ring focus-visible:ring-ring/50 w-fit cursor-pointer rounded-full outline-none focus-visible:ring-[3px] md:w-full"
+    <ActionTooltip tooltip={tooltip}>
+      <Button
+        asChild
+        variant="ghost"
+        className={cn(
+          'relative !px-6 lg:!px-8',
+          !isActive && 'hover:!bg-background/70 group focus:!bg-background/70',
+        )}
       >
-        <div
-          className={cn(
-            'group-hover:bg-accent group-hover:text-accent-foreground dark:group-hover:bg-accent/50 flex size-12 h-11 items-center justify-center gap-4 rounded-full bg-transparent px-2 md:w-fit md:justify-baseline md:pr-8 md:pl-3',
-            isActive
-              ? 'font-semibold opacity-100'
-              : 'opacity-70 group-hover:opacity-100',
-          )}
-        >
-          <Icon className="size-[22px]" />
-          <span className="hidden md:inline-block">{label}</span>
-        </div>
-      </Link>
+        <Link href={url}>
+          <Icon
+            className={cn(
+              'size-[1.6rem] transition-colors',
+              isActive
+                ? 'text-primary'
+                : 'text-muted-foreground group-hover:text-primary',
+            )}
+          />
+          <span className="sr-only">{tooltip}</span>
+          <motion.div
+            className="bg-primary absolute inset-x-0 -bottom-1.5 h-[3px] rounded-full"
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={{ opacity: isActive ? 1 : 0, scaleY: isActive ? 1 : 0 }}
+            exit={{ opacity: 0, scaleY: 0 }}
+            transition={{ duration: 0.2 }}
+          />
+        </Link>
+      </Button>
     </ActionTooltip>
   )
 }

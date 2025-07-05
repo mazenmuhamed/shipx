@@ -22,7 +22,7 @@ export function PricingNavbar() {
       <div className="flex items-center gap-8">
         <Link href="/">
           <Image
-            src="/icons/logo.svg"
+            src="logos/logo.svg"
             alt="ShipX Logo"
             width={47}
             height={47}
