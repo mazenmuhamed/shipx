@@ -14,7 +14,7 @@ export function UserMenu({ className }: { className?: string }) {
         )}
       >
         <AvatarFallback>
-          <Skeleton className="size-full rounded-full" />
+          <Skeleton className="size-full rounded-full object-contain" />
         </AvatarFallback>
         <AvatarImage src="/images/avatar.png" alt="User Avatar" className="" />
       </Avatar>

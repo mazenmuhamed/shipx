@@ -54,13 +54,13 @@ export function HeroSection() {
         className="flex items-center gap-3"
         delay={delay + 0.5}
       >
-        <Button asChild className="h-11 text-base">
+        <Button asChild className="h-11 rounded-full text-base">
           <Link href="/signup">Join for free</Link>
         </Button>
         <Button
           asChild
           variant="outline"
-          className="h-11 text-base hover:border-zinc-300"
+          className="h-11 rounded-full text-base hover:border-zinc-300"
         >
           <Link href="/pricing">
             See our plans

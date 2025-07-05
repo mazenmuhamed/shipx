@@ -65,7 +65,7 @@ const items = [
 export function PricingFAQs() {
   return (
     <BlurFade direction="up" inView inViewMargin="-50px">
-      <section className="mx-auto flex max-w-5xl flex-col gap-14 sm:gap-20 md:px-6">
+      <section className="mx-auto flex max-w-5xl flex-col gap-14 px-2 sm:gap-20 md:px-6">
         <div className="mx-auto text-center">
           <TextAnimate
             as="h2"

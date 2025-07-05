@@ -77,7 +77,7 @@ export function Navbar({ className }: { className?: string }) {
             }}
             transition={{ type: 'spring', duration: 0.4, ease: 'easeInOut' }}
           >
-            <Button asChild className="h-10 text-base">
+            <Button asChild className="h-10 rounded-full text-base">
               <Link href="/signup">Join for free</Link>
             </Button>
           </motion.div>
