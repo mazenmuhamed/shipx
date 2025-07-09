@@ -17,7 +17,6 @@ export function Navbar({ className }: { className?: string }) {
   })
 
   const pathname = usePathname()
-
   const { scrollY } = useScroll()
 
   useMotionValueEvent(scrollY, 'change', current => {
@@ -43,7 +42,7 @@ export function Navbar({ className }: { className?: string }) {
             alt="ShipX"
             width={26}
             height={26}
-            className="object-contain select-none dark:invert"
+            className="object-contain select-none"
           />
         </Link>
         <div className="flex items-center">

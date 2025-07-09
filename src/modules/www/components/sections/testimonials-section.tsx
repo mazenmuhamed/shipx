@@ -138,7 +138,10 @@ export function TestimonialSection() {
         </TextAnimate>
       </div>
       <div className="relative grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="dark:to-background/50 to-background/40 absolute inset-0 z-40 bg-gradient-to-b from-transparent" />
+        <div
+          aria-label="overlay"
+          className="dark:to-popover/50 to-popover/40 absolute inset-0 z-40 bg-gradient-to-b from-transparent"
+        />
         {testimonialChunks.map((chunk, chunkIndex) => (
           <div key={chunkIndex} className="space-y-3">
             {chunk.map(({ name, role, quote, image }, index) => (

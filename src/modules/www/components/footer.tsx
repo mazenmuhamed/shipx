@@ -18,7 +18,7 @@ export function Footer({ className }: { className?: string }) {
       <div className="container mx-auto flex h-full max-w-7xl flex-col gap-6 px-8 pt-38 pb-8 sm:justify-between sm:gap-0 sm:pt-24 md:flex-row xl:px-0">
         <div className="flex h-fit flex-col gap-4 sm:h-full">
           <Image
-            src="brand/logo-dark.svg"
+            src="brand/logo-light.svg"
             alt="ShipX"
             width={90}
             height={90}
