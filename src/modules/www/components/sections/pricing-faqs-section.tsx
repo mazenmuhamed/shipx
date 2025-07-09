@@ -98,7 +98,7 @@ export function PricingFAQsSection() {
               </AccordionItem>
             ))}
           </Accordion>
-          <p className="text-muted-foreground mt-6 px-8 text-center text-base text-xs sm:text-sm">
+          <p className="text-muted-foreground mt-6 px-8 text-center text-xs sm:text-sm lg:text-base">
             Still have more questions? Find answers in our{' '}
             <Link href="#" className="text-primary font-medium hover:underline">
               help center.
