@@ -36,7 +36,12 @@ export function TRPCProvider(
   const queryClient = getQueryClient()
   const [trpcClient] = useState(() =>
     trpc.createClient({
-      links: [httpBatchLink({ transformer: superjson, url: getUrl() })],
+      links: [
+        httpBatchLink({
+          transformer: superjson,
+          url: getUrl(),
+        }),
+      ],
     }),
   )
   return (

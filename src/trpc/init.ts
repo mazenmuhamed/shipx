@@ -2,17 +2,11 @@ import { cache } from 'react'
 import { initTRPC, TRPCError } from '@trpc/server'
 import superjson from 'superjson'
 
-import { createClient } from '@/lib/supabase/server'
-
 export const createTRPCContext = cache(async () => {
-  const supabase = await createClient()
-
-  const { data } = await supabase.auth.getUser()
-
-  return { supabase, user: data.user }
+  return { user: 'user_123' }
 })
 
-type Context = Awaited<ReturnType<typeof createTRPCContext>>
+export type Context = Awaited<ReturnType<typeof createTRPCContext>>
 
 const t = initTRPC.context<Context>().create({ transformer: superjson })
 

@@ -7,9 +7,8 @@ export const formSchema = z.object({
     .min(3, 'Name must be at least 3 characters')
     .max(25, 'Name must be at most 25 characters'),
   email: z
-    .string()
-    .nonempty('Email is required')
-    .email('Invalid email address, please enter a valid email'),
+    .email('Invalid email address, please enter a valid email')
+    .nonempty('Email is required'),
   password: z
     .string()
     .nonempty('Password is required')
