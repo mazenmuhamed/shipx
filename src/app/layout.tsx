@@ -4,6 +4,7 @@ import { Poppins as FontSans } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 
 import './globals.css'
+import { TRPCProvider } from '@/trpc/client'
 
 const font = FontSans({
   subsets: ['latin'],
@@ -30,7 +31,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <TRPCProvider>{children}</TRPCProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,3 +1,5 @@
 {
-  "emmet.excludeLanguages": ["typescript"]
+  "emmet.excludeLanguages": ["typescript"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
