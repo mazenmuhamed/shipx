@@ -7,7 +7,9 @@ export async function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request)
 
   const isPublicRoute = PUBLIC_ROUTES.includes(request.nextUrl.pathname)
-  const isAuthRoute = AUTH_ROUTES.includes(request.nextUrl.pathname)
+  const isAuthRoute = AUTH_ROUTES.some(url =>
+    url.startsWith(request.nextUrl.pathname),
+  )
 
   if (isPublicRoute) return NextResponse.next()
 

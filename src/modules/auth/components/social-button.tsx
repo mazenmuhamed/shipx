@@ -3,6 +3,7 @@
 import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
+import { authClient } from '@/lib/auth-client'
 
 import { Button } from '@/components/ui/button'
 
@@ -17,7 +18,11 @@ export function SocialButton({ provider, variant = 'default' }: Props) {
   }
 
   async function handleSocialSignIn() {
-    console.log(`Sign in with ${provider} clicked`)
+    await authClient.signIn.social({
+      provider,
+      callbackURL: '/home',
+      errorCallbackURL: '/login',
+    })
   }
 
   return (

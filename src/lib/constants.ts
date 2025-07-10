@@ -2,7 +2,7 @@
  * Public routes that do not require authentication.
  * These routes can be accessed by anyone without logging in.
  */
-export const PUBLIC_ROUTES = ['/', '/pricing']
+export const PUBLIC_ROUTES = ['/pricing']
 
 /**
  * Public routes to handle authentication.

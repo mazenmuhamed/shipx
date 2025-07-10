@@ -3,10 +3,11 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-// import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2, Eye, EyeOff } from 'lucide-react'
 
+import { trpc } from '@/trpc/client'
 import { formSchema, FormSchema } from '../schemas/login-form-schema'
 
 import { Input } from '@/components/ui/input'
@@ -25,22 +26,33 @@ import { ErrorAlert } from '@/modules/ui/error-alert'
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
-  // const [isPending, setIsPending] = useState(false)
-  // const [errorMessage, setErrorMessage] = useState('')
 
-  // const router = useRouter()
+  const router = useRouter()
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: { email: '', password: '' },
   })
 
-  async function handleSubmit(data: FormSchema) {
-    console.log('Form submitted with data:', data)
+  const {
+    mutate: signIn,
+    error,
+    isPending,
+  } = trpc.auth.signIn.useMutation({
+    onSuccess: () => {
+      router.replace('/home')
+    },
+    onError: error => {
+      console.error('[LOGIN_ERR]', error)
+      form.setError('root', { message: error.message })
+    },
+  })
+
+  function handleSubmit(data: FormSchema) {
+    signIn(data)
   }
 
-  const isPending = form.formState.isSubmitting
-  const errorMessage = form.formState.errors?.root?.message || ''
+  const errorMessage = form.formState.errors.root?.message || error?.message
 
   return (
     <div className="mx-auto flex w-full max-w-md flex-col gap-6">

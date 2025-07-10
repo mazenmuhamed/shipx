@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2, Eye, EyeOff } from 'lucide-react'
 
@@ -26,8 +25,7 @@ import { ErrorAlert } from '@/modules/ui/error-alert'
 
 export function SignupForm() {
   const [showPassword, setShowPassword] = useState(false)
-
-  const router = useRouter()
+  const [successSentVerification, setSuccessSentVerification] = useState(false)
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -40,10 +38,10 @@ export function SignupForm() {
     isPending,
   } = trpc.auth.createAccount.useMutation({
     onSuccess: () => {
-      router.replace('/home')
+      setSuccessSentVerification(true)
     },
     onError: error => {
-      console.error('[ERR_SIGNUP]', error)
+      console.error('[SIGNUP_ERR]', error)
       form.setError('root', { message: error.message })
     },
   })
@@ -130,6 +128,12 @@ export function SignupForm() {
               </FormItem>
             )}
           />
+          {successSentVerification && (
+            <ErrorAlert
+              status="success"
+              description="A verification email has been sent to your email address. Please check your inbox and follow the instructions to verify your account."
+            />
+          )}
           {error && <ErrorAlert status="warning" description={errorMessage} />}
           <div className="flex flex-col gap-3">
             <Button
