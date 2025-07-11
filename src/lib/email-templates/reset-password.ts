@@ -1,4 +1,3 @@
-// TODO: Fix this template
 export const resetPasswordEmailTemplate = (url: string) => {
   return `
   <!DOCTYPE html>
@@ -52,7 +51,6 @@ export const resetPasswordEmailTemplate = (url: string) => {
             font-weight: 600;
             color: #111827;
             margin-top: 0;
-            margin-bottom: 20px;
           }
 
           h2 {
@@ -147,7 +145,7 @@ export const resetPasswordEmailTemplate = (url: string) => {
                 
               <p>Hello,</p>
                 
-              <p>We received a request to reset your password for your ShipFast account. To reset your password, please click the button below:</p>
+              <p>We received a request to reset your password for your ShipX account. To reset your password, please click the button below:</p>
 
               <div class="button-container">
                 <a href="${url}" class="verify-button">Verify Email Address</a>

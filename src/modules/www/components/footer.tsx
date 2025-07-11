@@ -3,9 +3,24 @@ import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
 
-const links = ['Explore', 'Glossary', 'Pricing', 'Changelog', 'Blog']
+const links = [
+  { name: 'Explore', href: '/' },
+  { name: 'Glossary', href: '/' },
+  { name: 'Pricing', href: '/pricing' },
+  { name: 'Changelog', href: '/' },
+  { name: 'Blog', href: '/' },
+]
 
-const sublinks = ['Contact', 'Help center', 'Careers', 'Github', 'LinkedIn']
+const sublinks = [
+  { name: 'Contact', href: '/' },
+  { name: 'Help center', href: '/' },
+  { name: 'Careers', href: '/' },
+  { name: 'Github', href: 'https://github.com/mazenmuhamed/shipx' },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/mazen-mohamed-5b0716247/',
+  },
+]
 
 export function Footer({ className }: { className?: string }) {
   return (
@@ -35,11 +50,11 @@ export function Footer({ className }: { className?: string }) {
           <div className="flex flex-col gap-3">
             {links.map(link => (
               <Link
-                key={link}
-                href="/"
+                key={link.name}
+                href={link.href}
                 className="w-fit font-medium transition hover:opacity-80"
               >
-                {link}
+                {link.name}
               </Link>
             ))}
             <p className="text-muted-foreground mt-auto text-sm">
@@ -49,11 +64,11 @@ export function Footer({ className }: { className?: string }) {
           <div className="flex flex-col gap-3">
             {sublinks.map(link => (
               <Link
-                key={link}
-                href="/"
+                key={link.name}
+                href={link.href}
                 className="w-fit font-medium transition hover:opacity-80"
               >
-                {link}
+                {link.name}
               </Link>
             ))}
             <p className="text-muted-foreground mt-auto text-sm">Terms</p>

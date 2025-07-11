@@ -51,7 +51,6 @@ export const verificationEmailTemplate = (url: string) => {
             font-weight: 600;
             color: #111827;
             margin-top: 0;
-            margin-bottom: 20px;
           }
 
           h2 {

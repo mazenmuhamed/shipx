@@ -20,7 +20,7 @@ export function PricingLogosSection() {
         once
         className="text-center text-xl font-semibold sm:text-2xl lg:text-3xl lg:leading-16"
       >
-        Used by leading design & product teams.
+        Used by thousands of businesses worldwide.
       </TextAnimate>
       <Marquee className="items-center [--duration:40s]">
         <div className="flex flex-wrap items-center justify-center gap-20">

@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react'
 import { useState } from 'react'
-import { Building2, GraduationCap } from 'lucide-react'
+import { Building2Icon, GraduationCapIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -50,31 +50,31 @@ export function PricingHeroSection() {
           <PricingCard
             popular
             title="Pro"
-            description="For individuals"
+            description="For creators & sellers"
             price={planState === 'yearly' ? 10 : 12}
             features={[
-              'Browse all apps & websites',
-              'Browse flows',
-              'Unlimited collections',
-              'Hide screen footers',
-              'Download multiple screens',
-              'App history',
+              'Unlimited product listings',
+              'Advanced analytics dashboard',
+              'Social media integration',
+              'Customer messaging',
+              'Payment processing',
+              'Mobile app access',
             ]}
             className="md:col-span-2"
           />
           <PricingCard
             variant="outline"
             title="Business"
-            description="For individuals"
-            price={planState === 'yearly' ? 12 : 15}
+            description="For growing businesses"
+            price={planState === 'yearly' ? 25 : 30}
             features={[
               'All Pro features',
-              'Team collections',
-              'Comments & mentions',
-              'Admin tools',
-              'Centralized billing',
-              'Seat-based pricing',
-              'SOC 2 reports',
+              'Team collaboration tools',
+              'Advanced inventory management',
+              'Custom branding & storefront',
+              'Priority customer support',
+              'API access & integrations',
+              'Bulk operations & automation',
             ]}
             className="md:col-span-2"
           />
@@ -88,21 +88,21 @@ export function PricingHeroSection() {
       >
         <div className="grid w-full items-center justify-center gap-8 md:grid-cols-4 md:gap-5">
           <div className="flex max-w-md flex-col items-center gap-2 md:col-span-2">
-            <Building2 className="size-7" />
+            <Building2Icon className="size-7" />
             <h4 className="text-lg font-medium">Enterprise</h4>
             <p className="text-muted-foreground text-center">
-              Get advanced security (SOC 2 reports), priority support, standard
-              legal agreement & more.
+              Get advanced security, dedicated account management, solutions and
+              priority support.
             </p>
             <Button variant="link" className="w-fit text-[15px]">
-              Read more
+              Contact Sales
             </Button>
           </div>
           <div className="flex max-w-md flex-col items-center gap-2 sm:col-span-2">
-            <GraduationCap className="size-8" />
+            <GraduationCapIcon className="size-8" />
             <h4 className="text-lg font-medium">Student or educator?</h4>
             <p className="text-muted-foreground text-center">
-              Discover Mobbin for Education and get a discount if you’re
+              Discover ShipX for Education and get a discount if you’re
               eligible.
             </p>
             <Button variant="link" className="w-fit text-[15px]">

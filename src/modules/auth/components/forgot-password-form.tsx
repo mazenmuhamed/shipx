@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 import z from 'zod'
@@ -24,6 +24,37 @@ import { ErrorAlert } from '@/modules/ui/error-alert'
 
 export function ForgotPasswordForm() {
   const [successSentMail, setSuccessSentMail] = useState(false)
+  const [resentTimeLeft, setResentTimeLeft] = useState<number>()
+
+  /**
+   * Enable use to resend the forgot password email after a certain time
+   * This is a placeholder for future implementation.
+   */
+  useEffect(() => {
+    if (!successSentMail) return
+
+    const resentTimestamp = new Date(Date.now() + 60 * 1000) // 60 seconds from now
+
+    const interval = setInterval(() => {
+      const now = new Date()
+      const timeLeft = Math.max(
+        0,
+        Math.floor((resentTimestamp.getTime() - now.getTime()) / 1000),
+      )
+      setResentTimeLeft(timeLeft)
+
+      // Reset the success state and timer when time is up
+      if (timeLeft <= 0) {
+        setSuccessSentMail(false)
+        setResentTimeLeft(undefined)
+        clearInterval(interval)
+      }
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [successSentMail])
+
+  console.log(resentTimeLeft)
 
   const form = useForm<z.infer<typeof forgotPasswordSchema>>({
     resolver: zodResolver(forgotPasswordSchema),
@@ -37,6 +68,7 @@ export function ForgotPasswordForm() {
   } = trpc.auth.forgotPassword.useMutation({
     onSuccess: () => {
       setSuccessSentMail(true)
+      setResentTimeLeft(60) // Reset the timer after a successful email send
     },
     onError: error => {
       console.error('[FORGOT_PASSWORD_ERR]', error)
@@ -47,6 +79,8 @@ export function ForgotPasswordForm() {
   async function handleSubmit(data: z.infer<typeof forgotPasswordSchema>) {
     forgotPassword(data)
   }
+
+  const isResentValid = resentTimeLeft === undefined || resentTimeLeft <= 0
 
   return (
     <div className="mx-auto flex w-full max-w-md flex-col gap-6">
@@ -82,10 +116,12 @@ export function ForgotPasswordForm() {
             <Button
               type="submit"
               className="w-full"
-              disabled={!form.formState.isDirty || isPending}
+              disabled={!form.formState.isDirty || isPending || !isResentValid}
             >
               {isPending && <Loader2 className="animate-spin" />}
-              Send link
+              {!successSentMail
+                ? 'Send link'
+                : `Resend after ${resentTimeLeft} seconds`}
             </Button>
             <p className="text-muted-foreground mt-3 text-center text-sm">
               Don&lsquo; have an account?{' '}

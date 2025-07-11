@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import { Poppins as FontSans } from 'next/font/google'
 
+import { Toaster } from '@/components/ui/sonner'
+import { TRPCProvider } from '@/trpc/client'
 import { ThemeProvider } from '@/components/theme-provider'
 
 import './globals.css'
-import { TRPCProvider } from '@/trpc/client'
 
 const font = FontSans({
   subsets: ['latin'],
@@ -32,6 +33,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TRPCProvider>{children}</TRPCProvider>
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>

@@ -17,48 +17,49 @@ const items = [
     id: 'item-1',
     question: 'What is ShipX?',
     answer:
-      'ShipX is the world’s largest UI & UX reference library. It’s always up-to-date, includes mobile and web, and lets you filter by specific app categories, UI elements, flow patterns, and more. Join hundreds of thousands of designers using ShipX to accelerate research, get decision-makers on board, and start designing faster.',
+      'ShipX is a comprehensive social media and ecommerce platform that combines the power of social networking with seamless online shopping. Connect with friends, discover new products, share your experiences, and shop from your favorite brands all in one place. Our platform makes it easy for businesses to showcase their products while building meaningful connections with their customers.',
   },
   {
     id: 'item-2',
-    question: 'How often do you update the library?',
+    question: 'How do I start selling on ShipX?',
     answer:
-      'We have been publishing new apps every week since 2018, and we’ll update existing apps whenever they push a major design release. Subscribe to a paid plan to see how apps like Airbnb evolved since 2018.',
+      'Getting started as a seller is simple! Sign up for a business account, complete your profile verification, and upload your first products. Our seller dashboard provides everything you need to manage inventory, process orders, and track sales. We offer both free and premium seller plans with advanced analytics and marketing tools.',
   },
   {
     id: 'item-3',
-    question: 'Do you have discounts for students and educators?',
-    answer: 'Yes! Check out the ShipX for Education program for more details.',
+    question: 'Is my personal and payment information secure?',
+    answer:
+      'Absolutely! We use industry-standard encryption and security measures to protect your data. All payment transactions are processed through secure, PCI-compliant payment gateways. We never store your full payment details, and you can enable two-factor authentication for added security.',
   },
   {
     id: 'item-4',
-    question: 'What forms of payment do you accept?',
+    question: 'What payment methods do you accept?',
     answer:
-      'Most major credit cards are accepted for all plans. Enterprise plans can also request to be invoiced and paid by wire transfer. Find out more about our payment methods here.',
+      'We accept all major credit cards (Visa, Mastercard, American Express), PayPal, Apple Pay, Google Pay, and bank transfers. For business accounts, we also offer invoice billing and custom payment terms. All transactions are secure and encrypted.',
   },
   {
     id: 'item-5',
-    question: 'Can I cancel my subscription?',
+    question: 'How does shipping and returns work?',
     answer:
-      'You can cancel your ShipX subscription at anytime. Do note that you will not get a refund for cancelling your subscription. However, you can continue to access the membership features until the end of your billing cycle. Find out how to cancel your subscription here.',
+      'Shipping options vary by seller and location. Many items offer free shipping, with expedited options available. Return policies are set by individual sellers, but we ensure all returns are processed fairly. Our customer protection program covers qualifying purchases, and we provide full support for any issues.',
   },
   {
     id: 'item-6',
-    question: 'How do I switch from a Pro plan to a Team plan?',
+    question: 'Can I upgrade my account type?',
     answer:
-      'You can cancel your Pro plan and subscribe to a Team plan. For detailed instructions, click here.',
+      "Yes! You can upgrade from a personal account to a business account, or from basic to premium plans at any time. Upgrades take effect immediately, and you'll only pay the prorated difference for the current billing period.",
   },
   {
     id: 'item-7',
-    question: 'What is the difference between Enterprise plan and Team plan?',
+    question: 'What are the benefits of premium business accounts?',
     answer:
-      'Team plan enables teams to work more effectively together, with features like team collections and team management. Enterprise plan has all the Team plan capabilities, and it offers advanced security features like SAML Single Sign-On (SSO) and SCIM user provisioning, priority support and training, enhanced security, and more. Learn more about the Enterprise Plan by requesting a demo for a complete overview.',
+      'Premium business accounts include advanced analytics, priority customer support, enhanced marketing tools, bulk product management, custom storefronts, integration APIs, and reduced transaction fees. Enterprise plans also offer dedicated account management, custom integrations, and white-label options.',
   },
   {
     id: 'item-8',
-    question: 'What is your refund policy?',
+    question: 'What is your refund and cancellation policy?',
     answer:
-      'We do not offer refunds. If you cancel your plan before the next renewal cycle, you will retain access to paid features until the end of your subscription period. When your subscription expires, you will lose access to paid features and all data associated with those features. If you have any questions about what you’ve been charged, please contact us.',
+      "You can cancel premium subscriptions at any time, and you'll retain access to premium features until the end of your billing period. For purchases, refund eligibility depends on the seller's return policy and our buyer protection guidelines. Digital products and services may have different refund terms. Contact our support team for specific cases.",
   },
 ]
 

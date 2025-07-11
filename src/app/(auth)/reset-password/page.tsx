@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+
+import { prisma } from '@/lib/prisma'
 
 import { ResetPasswordForm } from '@/modules/auth/components/reset-password-form'
-import { notFound } from 'next/navigation'
-import { prisma } from '@/lib/prisma'
 
 export const metadata: Metadata = {
   title: 'Reset password | ShipX',
