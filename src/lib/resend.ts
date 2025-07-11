@@ -1,6 +1,7 @@
 import { Resend } from 'resend'
 
 import { verificationEmailTemplate } from './email-templates/verification'
+import { resetPasswordEmailTemplate } from './email-templates/reset-password'
 
 export const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -41,5 +42,22 @@ export async function sendVerificationEmail({
     console.log('[SEND_VERIFICATION_REQUEST]', error)
 
     throw new Error('Failed to send verification email')
+  }
+}
+
+export async function sendResetPasswordEmail({
+  identifier,
+  url,
+}: SendVerificationEmailParams) {
+  try {
+    await sendEmail({
+      to: identifier,
+      subject: 'Reset your password',
+      html: resetPasswordEmailTemplate(url),
+    })
+  } catch (error) {
+    console.log('[SEND_RESET_PASSWORD_EMAIL]', error)
+
+    throw new Error('Failed to send reset password email')
   }
 }

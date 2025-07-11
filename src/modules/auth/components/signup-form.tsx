@@ -5,9 +5,10 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2, Eye, EyeOff } from 'lucide-react'
+import z from 'zod'
 
 import { trpc } from '@/trpc/client'
-import { formSchema, FormSchema } from '../schemas/signup-form-schema'
+import { createAccountSchema } from '../schemas/signup-schema'
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -27,8 +28,8 @@ export function SignupForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [successSentVerification, setSuccessSentVerification] = useState(false)
 
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof createAccountSchema>>({
+    resolver: zodResolver(createAccountSchema),
     defaultValues: { name: '', email: '', password: '' },
   })
 
@@ -46,7 +47,7 @@ export function SignupForm() {
     },
   })
 
-  function handleSubmit(data: FormSchema) {
+  function handleSubmit(data: z.infer<typeof createAccountSchema>) {
     createAccount(data)
   }
 

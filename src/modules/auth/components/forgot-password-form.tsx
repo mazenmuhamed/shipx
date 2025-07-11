@@ -2,11 +2,13 @@
 
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-// import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
+import z from 'zod'
 
-import { formSchema, FormSchema } from '../schemas/forgot-password-form-schema'
+import { trpc } from '@/trpc/client'
+import { forgotPasswordSchema } from '../schemas/forgot-password-schema'
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -21,22 +23,30 @@ import {
 import { ErrorAlert } from '@/modules/ui/error-alert'
 
 export function ForgotPasswordForm() {
-  // const [isPending, setIsPending] = useState(false)
-  // const [errorMessage, setErrorMessage] = useState('')
+  const [successSentMail, setSuccessSentMail] = useState(false)
 
-  // const router = useRouter()
-
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof forgotPasswordSchema>>({
+    resolver: zodResolver(forgotPasswordSchema),
     defaultValues: { email: '' },
   })
 
-  async function handleSubmit(data: FormSchema) {
-    console.log('Form submitted with data:', data)
-  }
+  const {
+    mutate: forgotPassword,
+    error,
+    isPending,
+  } = trpc.auth.forgotPassword.useMutation({
+    onSuccess: () => {
+      setSuccessSentMail(true)
+    },
+    onError: error => {
+      console.error('[FORGOT_PASSWORD_ERR]', error)
+      form.setError('root', { message: error.message })
+    },
+  })
 
-  const isPending = form.formState.isSubmitting
-  const errorMessage = form.formState.errors?.root?.message || ''
+  async function handleSubmit(data: z.infer<typeof forgotPasswordSchema>) {
+    forgotPassword(data)
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-md flex-col gap-6">
@@ -61,9 +71,13 @@ export function ForgotPasswordForm() {
               </FormItem>
             )}
           />
-          {errorMessage && (
-            <ErrorAlert status="warning" description={errorMessage} />
+          {successSentMail && (
+            <ErrorAlert
+              status="success"
+              description="A reset password link has been sent to your email."
+            />
           )}
+          {error && <ErrorAlert status="warning" description={error.message} />}
           <div className="flex flex-col gap-3">
             <Button
               type="submit"

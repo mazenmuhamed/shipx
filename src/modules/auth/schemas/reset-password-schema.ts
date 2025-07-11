@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const formSchema = z
+export const resetPasswordSchema = z
   .object({
     password: z
       .string()
@@ -15,5 +15,3 @@ export const formSchema = z
     message: "Passwords don't match",
     path: ['confirmPassword'],
   })
-
-export type FormSchema = z.infer<typeof formSchema>

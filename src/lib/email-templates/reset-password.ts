@@ -1,11 +1,12 @@
-export const verificationEmailTemplate = (url: string) => {
+// TODO: Fix this template
+export const resetPasswordEmailTemplate = (url: string) => {
   return `
   <!DOCTYPE html>
       <html lang="en">
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Verify Your Email - ShipX</title>
+        <title>Reset Your Password - ShipX</title>
         <style>
           /* Reset styles */
           body, html {
@@ -142,21 +143,25 @@ export const verificationEmailTemplate = (url: string) => {
             </div>
             
             <div class="content">
-              <h2>Verify your email address</h2>
-              
-              <p>Hi there,</p>
-              
-              <p>Thanks for signing up for ShipX! To complete your registration and start shipping faster than ever, please verify your email address.</p>
-              
+              <h2>Reset Your Password</h2>
+                
+              <p>Hello,</p>
+                
+              <p>We received a request to reset your password for your ShipFast account. To reset your password, please click the button below:</p>
+
               <div class="button-container">
                 <a href="${url}" class="verify-button">Verify Email Address</a>
               </div>
               
-              <p>If the button above doesn't work, you can also verify your email by entering this verification link:</p>
+              <p>If the button above doesn't work, you can also reset your password by entering this link:</p>
               
               <div class="verification-code">${url}</div>
               
-              <p class="text-sm">This verification link and code will expire in 24 hours. If you didn't create an account with ShipX, you can safely ignore this email.</p>
+              <div class="security-note">
+                <p><strong>Important:</strong> If you didn't request this password reset, please ignore this email or contact our support team immediately.</p>
+              </div>
+                
+              <p class="text-sm">This password reset link and code will expire in 1 hour for security reasons.</p>
               
               <p class="mt-8">Happy shipping,<br>The ShipX Team</p>
             </div>

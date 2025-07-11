@@ -13,7 +13,7 @@ export default async function Layout({
   children: React.ReactNode
 }) {
   return (
-    <main className="dark bg-background text-foreground dark:bg-popover dark:text-popover-foreground flex min-h-svh flex-col items-center justify-center gap-8 px-4 py-20 md:gap-10 2xl:gap-12">
+    <main className="dark bg-popover text-popover-foreground flex min-h-svh flex-col items-center justify-center gap-8 px-4 py-20 md:gap-10 2xl:gap-12">
       <BackButton className="fixed top-5 left-5" />
       <Image
         src="brand/logo-light.svg"

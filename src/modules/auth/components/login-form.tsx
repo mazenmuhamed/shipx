@@ -6,9 +6,10 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2, Eye, EyeOff } from 'lucide-react'
+import z from 'zod'
 
 import { trpc } from '@/trpc/client'
-import { formSchema, FormSchema } from '../schemas/login-form-schema'
+import { loginSchema } from '../schemas/login-schema'
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -29,8 +30,8 @@ export function LoginForm() {
 
   const router = useRouter()
 
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: { email: '', password: '' },
   })
 
@@ -48,7 +49,7 @@ export function LoginForm() {
     },
   })
 
-  function handleSubmit(data: FormSchema) {
+  function handleSubmit(data: z.infer<typeof loginSchema>) {
     signIn(data)
   }
 

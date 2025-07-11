@@ -3,7 +3,7 @@ import { prismaAdapter } from 'better-auth/adapters/prisma'
 import { nextCookies } from 'better-auth/next-js'
 
 import { prisma } from './prisma'
-import { sendVerificationEmail } from './resend'
+import { sendResetPasswordEmail, sendVerificationEmail } from './resend'
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, { provider: 'postgresql' }),
@@ -11,6 +11,9 @@ export const auth = betterAuth({
     enabled: true,
     minPasswordLength: 6,
     requireEmailVerification: true,
+    sendResetPassword: async ({ user, url, token }) => {
+      await sendResetPasswordEmail({ token, url, identifier: user.email })
+    },
   },
   emailVerification: {
     sendOnSignUp: true,

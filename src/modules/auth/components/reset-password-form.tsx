@@ -1,12 +1,16 @@
 'use client'
 
-import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-// import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2, Eye, EyeOff } from 'lucide-react'
+import { toast } from 'sonner'
+import z from 'zod'
 
-import { formSchema, FormSchema } from '../schemas/reset-password-form-schema'
+import { trpc } from '@/trpc/client'
+
+import { resetPasswordSchema } from '../schemas/reset-password-schema'
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -20,25 +24,35 @@ import {
 
 import { ErrorAlert } from '@/modules/ui/error-alert'
 
-export function ResetPasswordForm() {
+export function ResetPasswordForm({ token }: { token: string }) {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  // const [isPending, setIsPending] = useState(false)
-  // const [errorMessage, setErrorMessage] = useState('')
 
-  // const router = useRouter()
+  const router = useRouter()
 
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof resetPasswordSchema>>({
+    resolver: zodResolver(resetPasswordSchema),
     defaultValues: { password: '', confirmPassword: '' },
   })
 
-  async function handleSubmit(data: FormSchema) {
-    console.log('Form submitted with data:', data)
-  }
+  const {
+    mutate: resetPassword,
+    error,
+    isPending,
+  } = trpc.auth.resetPassword.useMutation({
+    onSuccess: () => {
+      toast.success('Your password has been changed')
+      router.replace('/login')
+    },
+    onError: error => {
+      console.error('[RESET_PASSWORD_ERR]', error)
+      form.setError('root', { message: error.message })
+    },
+  })
 
-  const isPending = form.formState.isSubmitting
-  const errorMessage = form.formState.errors?.root?.message || ''
+  async function handleSubmit(data: z.infer<typeof resetPasswordSchema>) {
+    resetPassword({ password: data.password, token })
+  }
 
   return (
     <div className="mx-auto flex w-full max-w-md flex-col gap-6">
@@ -103,9 +117,7 @@ export function ResetPasswordForm() {
               </FormItem>
             )}
           />
-          {errorMessage && (
-            <ErrorAlert status="warning" description={errorMessage} />
-          )}
+          {error && <ErrorAlert status="warning" description={error.message} />}
           <div className="flex flex-col gap-3">
             <Button
               type="submit"
