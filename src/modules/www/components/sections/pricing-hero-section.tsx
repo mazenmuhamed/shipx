@@ -138,7 +138,7 @@ function PlanSwitch({ planState, setPlanState }: PlanSwitchProps) {
                 <motion.div
                   layoutId="background"
                   id="background"
-                  className="bg-background absolute inset-0 rounded-full"
+                  className="bg-background dark:bg-popover dark:text-popover-foreground absolute inset-0 rounded-full"
                   transition={{ duration: 0.2, ease: 'easeInOut' }}
                 />
               ) : null}
