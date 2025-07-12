@@ -28,8 +28,8 @@ function HomeViewSuspense() {
   return (
     <div className="flex gap-4 px-2">
       <MainSidebar user={user} />
-      <div className="min-h-full w-full py-4">
-        <div className="mx-auto w-full max-w-[30rem] space-y-4 sm:max-w-[31.25rem]">
+      <div className="min-h-svh w-full py-4">
+        <div className="mx-auto w-full max-w-[30rem] space-y-4 sm:max-w-[31.25rem] 2xl:max-w-[36rem]">
           <CreatePost user={user} />
         </div>
       </div>

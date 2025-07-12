@@ -56,7 +56,10 @@ function HeaderLink({ tooltip, url, isActive, icon: Icon }: Props) {
       <Button
         asChild
         variant="ghost"
-        className={cn('group relative h-11 rounded-lg !px-6 lg:!px-8')}
+        className={cn(
+          'group relative h-11 rounded-lg !px-6 lg:!px-8 2xl:!px-11',
+          isActive && 'hover:!bg-transparent active:!bg-transparent',
+        )}
       >
         <Link href={url}>
           <Icon

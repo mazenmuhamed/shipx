@@ -1,7 +1,7 @@
 'use client'
 
-import { User } from '@prisma/client'
 import { useState } from 'react'
+import { User } from '@prisma/client'
 
 import { Button } from '@/components/ui/button'
 import { UserAvatar } from '@/modules/ui/user-avatar'
@@ -13,7 +13,7 @@ export function CreatePost({ user }: { user: User }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="box flex w-full flex-col rounded-2xl px-4 pt-4 pb-3 shadow">
+    <div className="bg-background text-foreground flex w-full flex-col rounded-2xl px-4 pt-4 pb-3 shadow">
       <div className="flex w-full items-center gap-2">
         <UserAvatar src={user.image} alt={user.name} id={user.id} />
         <Button

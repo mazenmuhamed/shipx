@@ -7,7 +7,7 @@ import { HeaderActions } from './header-actions'
 
 export function Header() {
   return (
-    <header className="box sticky inset-x-0 top-0 z-50 flex h-14 w-full items-center justify-between gap-8 border-b px-4 md:gap-0">
+    <header className="bg-background text-foreground sticky inset-x-0 top-0 z-50 flex h-14 w-full items-center justify-between gap-8 border-b px-4 md:gap-0">
       <div className="flex w-full max-w-96 items-center gap-4">
         <Link href="/home">
           <Image
