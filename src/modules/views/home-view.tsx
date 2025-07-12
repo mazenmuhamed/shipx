@@ -8,6 +8,7 @@ import { trpc } from '@/trpc/client'
 import { ErrorFallback } from '../ui/error-fallback'
 import { LoadingIndicator } from '../ui/loading-indicator'
 
+import { CreatePost } from '../posts/create-post'
 import { MainSidebar } from '../components/main-sidebar'
 import { ContactSidebar } from '../components/contact-sidebar'
 
@@ -29,7 +30,7 @@ function HomeViewSuspense() {
       <MainSidebar user={user} />
       <div className="min-h-full w-full py-4">
         <div className="mx-auto w-full max-w-[30rem] space-y-4 sm:max-w-[31.25rem]">
-          {/* <CreatePost /> */}
+          <CreatePost user={user} />
         </div>
       </div>
       <ContactSidebar />
