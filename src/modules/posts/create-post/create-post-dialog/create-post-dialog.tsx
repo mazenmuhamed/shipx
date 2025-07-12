@@ -35,7 +35,7 @@ export function CreatePostDialog({ user, open, onOpenChange }: Props) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-center">Create post</DialogTitle>
-          <DialogDescription></DialogDescription>
+          <DialogDescription className="hidden sm:inline-flex"></DialogDescription>
         </DialogHeader>
         <hr />
         <div className="flex flex-col gap-4">

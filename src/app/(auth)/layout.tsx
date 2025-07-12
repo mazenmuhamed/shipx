@@ -20,7 +20,7 @@ export default async function Layout({
         alt="ShipX Logo"
         width={100}
         height={100}
-        className="size-8 select-none md:size-11 lg:size-14"
+        className="size-11 select-none lg:size-14"
       />
       {children}
     </main>

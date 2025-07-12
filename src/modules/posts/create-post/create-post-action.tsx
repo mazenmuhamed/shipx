@@ -4,17 +4,17 @@ import { Button } from '@/components/ui/button'
 
 export function CreatePostAction() {
   return (
-    <div className="flex w-full items-center [&_button]:grow [&_button]:rounded-md">
-      <Button variant="ghost" className="gap-3">
-        <RadioIcon className="size-[25px] text-rose-500" />
+    <div className="flex w-full items-center [&_button]:flex-1 [&_button]:rounded-md">
+      <Button variant="ghost" className="sm:gap-3">
+        <RadioIcon className="text-rose-500 sm:size-[25px]" />
         <span className="opacity-80">Live video</span>
       </Button>
-      <Button variant="ghost" className="gap-3">
-        <ImagesIcon className="size-[22px] text-green-500" />
+      <Button variant="ghost" className="sm:gap-3">
+        <ImagesIcon className="text-green-500 sm:size-[22px]" />
         <span className="opacity-80">Photo/Video</span>
       </Button>
-      <Button variant="ghost" className="gap-3">
-        <ClapperboardIcon className="size-6 text-pink-500" />
+      <Button variant="ghost" className="sm:gap-3">
+        <ClapperboardIcon className="text-pink-500 sm:size-6" />
         <span className="opacity-80">Reals</span>
       </Button>
     </div>
