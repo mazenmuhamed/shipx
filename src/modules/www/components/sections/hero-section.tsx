@@ -73,7 +73,7 @@ export function HeroSection() {
       <div className="my-12 flex flex-col items-center gap-8">
         <TextAnimate
           as="p"
-          className="text-muted-foreground text-sm font-medium"
+          className="text-muted-foreground text-center text-sm font-medium"
           delay={1.2}
           animation="slideUp"
           by="word"

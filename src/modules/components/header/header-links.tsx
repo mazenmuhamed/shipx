@@ -1,11 +1,47 @@
+'use client'
+
 import Link from 'next/link'
 import { motion } from 'motion/react'
 import { LucideProps } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import {
+  Gamepad2Icon,
+  HomeIcon,
+  MonitorPlayIcon,
+  StoreIcon,
+  UsersIcon,
+} from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
 import { Button } from '@/components/ui/button'
 import { ActionTooltip } from '@/modules/ui/action-tooltip'
+
+const links = [
+  { label: 'Home', url: '/home', icon: HomeIcon },
+  { label: 'Video', url: '/watch', icon: MonitorPlayIcon },
+  { label: 'Marketplace', url: '/marketplace', icon: StoreIcon },
+  { label: 'Groups', url: '/groups', icon: UsersIcon },
+  { label: 'Games', url: '/games', icon: Gamepad2Icon },
+]
+
+export function HeaderLinks() {
+  const pathname = usePathname()
+
+  return (
+    <nav className="hidden items-center gap-1 md:flex">
+      {links.map(link => (
+        <HeaderLink
+          key={link.url}
+          tooltip={link.label}
+          url={link.url}
+          icon={link.icon}
+          isActive={pathname === link.url}
+        />
+      ))}
+    </nav>
+  )
+}
 
 type Props = {
   tooltip: string
@@ -14,7 +50,7 @@ type Props = {
   isActive: boolean
 }
 
-export function HeaderLink({ tooltip, url, isActive, icon: Icon }: Props) {
+function HeaderLink({ tooltip, url, isActive, icon: Icon }: Props) {
   return (
     <ActionTooltip tooltip={tooltip}>
       <Button

@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import {
   ExpandIcon,
@@ -8,6 +10,7 @@ import {
 import { IconBrandLine } from '@tabler/icons-react'
 
 import { cn } from '@/lib/utils'
+import { useBreakPoint } from '@/hooks/use-breakpoint'
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -27,6 +30,8 @@ export function ChatsMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<ChatsFilter>('all')
 
+  const isMobile = useBreakPoint()
+
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <ActionTooltip tooltip="Chats">
@@ -45,7 +50,7 @@ export function ChatsMenu() {
       </ActionTooltip>
       <PopoverContent
         align="end"
-        alignOffset={-98}
+        alignOffset={isMobile ? -130 : -98}
         className="flex w-[22rem] flex-col gap-2 rounded-2xl pt-3"
         onOpenAutoFocus={e => e.preventDefault()}
       >

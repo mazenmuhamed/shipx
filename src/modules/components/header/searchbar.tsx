@@ -43,7 +43,7 @@ export function Searchbar() {
       <ActionTooltip
         asChild={false}
         tooltip="Search"
-        className="w-fit xl:w-full xl:max-w-72"
+        className="w-fit xl:w-full xl:max-w-64"
         contentClassName="inline-block xl:hidden"
       >
         <div

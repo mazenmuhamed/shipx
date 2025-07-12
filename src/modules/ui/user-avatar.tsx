@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils'
 
 type Props = {
   id?: string
-  src: string | null
-  alt: string | null
+  src: string | null | undefined
+  alt: string | null | undefined
   className?: string
   width?: number
   height?: number

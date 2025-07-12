@@ -16,15 +16,14 @@ import {
   SunIcon,
   LucideProps,
 } from 'lucide-react'
+import { User } from 'better-auth'
 
 import { cn } from '@/lib/utils'
-import { trpc } from '@/trpc/client'
 import { authClient } from '@/lib/auth-client'
 import { useBreakPoint } from '@/hooks/use-breakpoint'
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,18 +40,12 @@ import {
 import { UserAvatar } from '@/modules/ui/user-avatar'
 import { ActionTooltip } from '@/modules/ui/action-tooltip'
 
-export function UserMenu() {
+export function UserMenu({ user }: { user: User }) {
   const [isOpen, setIsOpen] = useState(false)
 
   const router = useRouter()
 
   const isMobile = useBreakPoint(392)
-
-  const { data: user, isPending } = trpc.user.getUser.useQuery()
-
-  if (isPending || !user) {
-    return <Skeleton className="size-10 rounded-full" />
-  }
 
   async function handleLogout() {
     await authClient.signOut({
@@ -81,7 +74,7 @@ export function UserMenu() {
         </DropdownMenuTrigger>
       </ActionTooltip>
       <DropdownMenuContent
-        align="end"
+        align={isMobile ? 'center' : 'end'}
         className="w-72 rounded-2xl sm:w-80"
         onCloseAutoFocus={e => e.preventDefault()}
       >
@@ -98,7 +91,7 @@ export function UserMenu() {
                   alt={user.name}
                   disableNavigation
                 />
-                <span className="font-semibold">{user.name}</span>
+                <span className="font-medium">{user.name}</span>
               </Link>
             </Button>
           </DropdownMenuItem>
@@ -118,8 +111,12 @@ export function UserMenu() {
               className="h-10 text-sm [&_svg]:size-5"
             />
           </div>
-          <Button variant="secondary" className="w-full rounded-xl border">
-            Manage Subscriptions
+          <Button
+            asChild
+            variant="secondary"
+            className="w-full rounded-xl border"
+          >
+            <Link href="/pricing">Manage Subscriptions</Link>
           </Button>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />

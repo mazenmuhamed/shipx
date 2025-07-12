@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { User } from 'better-auth'
 import { usePathname } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
@@ -11,7 +12,7 @@ import { Button } from '@/components/ui/button'
 
 import { MenuButton } from './menu-button'
 
-export function PricingNavbar() {
+export function PricingNavbar({ user }: { user: User | undefined }) {
   return (
     <div className="bg-background/80 dark:bg-popover/80 sticky top-0 z-50 flex w-full items-center justify-between px-5 py-3 backdrop-blur-md sm:px-10">
       <div className="flex items-center gap-8">
@@ -30,18 +31,33 @@ export function PricingNavbar() {
         </nav>
       </div>
       <div className="flex items-center gap-6">
-        <div className="hidden items-center gap-6 md:flex">
-          <Link
-            href="/login"
-            className="font-medium transition hover:opacity-80"
-          >
-            Log in
-          </Link>
-          <Button asChild className="h-10 text-base">
-            <Link href="/signup">Create for account</Link>
-          </Button>
-        </div>
-        <MenuButton />
+        {user && (
+          <div className="hidden items-center gap-6 md:flex">
+            <Link
+              href="/home"
+              className="font-medium transition hover:opacity-80"
+            >
+              Home
+            </Link>
+            <Button disabled className="h-10 text-base">
+              My Dashboard
+            </Button>
+          </div>
+        )}
+        {!user && (
+          <div className="hidden items-center gap-6 md:flex">
+            <Link
+              href="/login"
+              className="font-medium transition hover:opacity-80"
+            >
+              Log in
+            </Link>
+            <Button asChild className="h-10 text-base">
+              <Link href="/signup">Create for account</Link>
+            </Button>
+          </div>
+        )}
+        <MenuButton user={user} />
       </div>
     </div>
   )

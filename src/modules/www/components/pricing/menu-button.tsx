@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { User } from 'better-auth'
 import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
 import {
@@ -31,7 +32,7 @@ import {
 
 import { ActionTooltip } from '@/modules/ui/action-tooltip'
 
-export function MenuButton() {
+export function MenuButton({ user }: { user: User | undefined }) {
   const pathname = usePathname()
 
   const { theme, setTheme } = useTheme()
@@ -50,7 +51,29 @@ export function MenuButton() {
         sideOffset={14}
         className="w-56 rounded-2xl"
       >
-        <DropdownMenuGroup className="space-y-2 p-2 md:hidden">
+        <DropdownMenuGroup hidden={!user} className="space-y-2 p-2 md:hidden">
+          <DropdownMenuItem
+            asChild
+            className="!bg-secondary !text-secondary-foreground hover:!bg-secondary/90 rounded-full"
+          >
+            <Button
+              asChild
+              variant="secondary"
+              className="h-9 w-full cursor-pointer rounded-full"
+            >
+              <Link href="/home">Home</Link>
+            </Button>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            asChild
+            className="!bg-primary !text-primary-foreground hover:!bg-primary/80 rounded-full"
+          >
+            <Button disabled className="h-9 w-full cursor-pointer rounded-full">
+              My Dashboard
+            </Button>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuGroup hidden={!!user} className="space-y-2 p-2 md:hidden">
           <DropdownMenuItem
             asChild
             className="!bg-primary !text-primary-foreground hover:!bg-primary/90 rounded-full"
