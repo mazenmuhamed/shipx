@@ -33,6 +33,7 @@ export function EmojiButton({ onEmojiSelect, onCloseAutoFocus }: Props) {
       </ActionTooltip>
       <PopoverContent
         side="top"
+        align="end"
         className="max-h-72 w-auto overflow-y-auto rounded-2xl p-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         onCloseAutoFocus={e => {
           e.preventDefault()
@@ -44,6 +45,9 @@ export function EmojiButton({ onEmojiSelect, onCloseAutoFocus }: Props) {
           onEmojiSelect={onEmojiSelect}
           previewPosition="none"
           theme={theme}
+          searchPosition="none"
+          skinTonePosition="none"
+          navPosition="bottom"
           style={{ maxHeight: '5rem', minHeight: '15rem' }}
         />
       </PopoverContent>

@@ -19,11 +19,11 @@ export function MainSidebar({ user }: { user: User }) {
   return (
     <aside
       className={cn(
-        'sticky top-14 left-0 h-[calc(100svh-3.5rem)] flex-col',
+        'sticky top-14 left-0 h-[calc(100svh-3.5rem)] w-72 flex-col',
         isTablet ? 'hidden' : 'flex',
       )}
     >
-      <ScrollArea className="h-full w-80 p-2">
+      <ScrollArea className="h-full w-full p-2">
         <div className="flex flex-col gap-0.5">
           <Button
             asChild

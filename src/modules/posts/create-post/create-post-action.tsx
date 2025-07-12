@@ -11,7 +11,7 @@ export function CreatePostAction() {
       </Button>
       <Button variant="ghost" className="sm:gap-3">
         <ImagesIcon className="text-green-500 sm:size-[22px]" />
-        <span className="opacity-80">Photo/Video</span>
+        <span className="opacity-80">Media</span>
       </Button>
       <Button variant="ghost" className="sm:gap-3">
         <ClapperboardIcon className="text-pink-500 sm:size-6" />

@@ -26,13 +26,13 @@ const links = [
   { label: 'Reels', href: '/reels', icon: ClapperboardIcon },
   { label: 'Saved', href: '/saved', icon: BookmarkIcon },
   {
-    label: 'Start a Business',
+    label: 'Create a Store',
     href: '/store',
     icon: ShoppingBagIcon,
     premium: true,
   },
   {
-    label: 'Business Dashboard',
+    label: 'Store Dashboard',
     href: '/dashboard',
     icon: LayoutDashboardIcon,
     premium: true,
