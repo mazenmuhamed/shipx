@@ -1,8 +1,9 @@
-import { prisma } from '@/lib/prisma'
-import { createTRPCRouter, protectedProcedure } from '@/trpc/init'
 import { TRPCError } from '@trpc/server'
+import { createTRPCRouter, protectedProcedure } from '@/trpc/init'
 
-export const userProcedure = createTRPCRouter({
+import { prisma } from '@/lib/prisma'
+
+export const userRouter = createTRPCRouter({
   getUser: protectedProcedure.query(async opts => {
     const { user } = opts.ctx
 

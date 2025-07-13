@@ -14,6 +14,7 @@ model User {
   emailVerified Boolean
   image         String?
   bio           String?
+  posts         Post[]
   sessions      Session[]
   accounts      Account[]
 
@@ -21,6 +22,29 @@ model User {
   updatedAt DateTime @updatedAt
 
   @@map("user")
+}
+
+model Post {
+  id      String      @id @default(uuid())
+  content String?
+  image   String?
+  userId  String
+  privacy PostPrivacy @default(PUBLIC)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId], name: "idx_post_user")
+  @@index([createdAt], name: "idx_post_created_at")
+  @@map("post")
+}
+
+enum PostPrivacy {
+  PUBLIC
+  ONLY_ME
+  FRIENDS
 }
 
 model Session {

@@ -15,6 +15,7 @@ export default async function HomePage() {
   await checkAuthenticatedUser()
 
   void trpc.user.getUser.prefetch()
+  void trpc.post.getPosts.prefetch()
 
   return (
     <HydrateClient>

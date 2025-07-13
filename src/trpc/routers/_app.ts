@@ -1,11 +1,13 @@
 import { createTRPCRouter } from '../init'
 
-import { authProcedure } from './procedures/auth'
-import { userProcedure } from './procedures/user'
+import { authRouter } from './procedures/auth'
+import { postRouter } from './procedures/post'
+import { userRouter } from './procedures/user'
 
 export const appRouter = createTRPCRouter({
-  auth: authProcedure,
-  user: userProcedure,
+  auth: authRouter,
+  user: userRouter,
+  post: postRouter,
 })
 
 export type AppRouter = typeof appRouter

@@ -25,17 +25,24 @@ export function CreatePostDialogActions() {
           icon={ImagesIcon}
         />
         <ActionButton
+          disabled
           tooltip="Tag people"
           variants="blue"
           className="size-[26px]"
           icon={TagsIcon}
         />
         <ActionButton
+          disabled
           tooltip="Feeling/activity"
           variants="yellow"
           icon={SmileIcon}
         />
-        <ActionButton tooltip="Check in" variants="orange" icon={MapPinIcon} />
+        <ActionButton
+          disabled
+          tooltip="Check in"
+          variants="orange"
+          icon={MapPinIcon}
+        />
       </div>
     </div>
   )
@@ -49,6 +56,7 @@ type ActionButtonProps = {
   variants?: Variants
   onClick?: VoidFunction
   className?: string
+  disabled?: boolean
 }
 
 export function ActionButton({
@@ -56,6 +64,7 @@ export function ActionButton({
   tooltip,
   variants = 'green',
   onClick,
+  disabled,
   className,
 }: ActionButtonProps) {
   return (
@@ -64,6 +73,7 @@ export function ActionButton({
         size="icon"
         variant="ghost"
         onClick={onClick}
+        disabled={disabled}
         className={cn(
           'group rounded-full',
           variants === 'blue' && 'text-primary hover:text-primary/80',

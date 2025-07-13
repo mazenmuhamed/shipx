@@ -1,6 +1,7 @@
-import { baseAuthProcedure, createTRPCRouter } from '@/trpc/init'
-import { TRPCError } from '@trpc/server'
+import z from 'zod'
 import { APIError } from 'better-auth/api'
+import { TRPCError } from '@trpc/server'
+import { baseAuthProcedure, createTRPCRouter } from '@/trpc/init'
 
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
@@ -9,9 +10,8 @@ import { loginSchema } from '@/modules/auth/schemas/login-schema'
 import { createAccountSchema } from '@/modules/auth/schemas/signup-schema'
 import { forgotPasswordSchema } from '@/modules/auth/schemas/forgot-password-schema'
 import { resetPasswordSchema } from '@/modules/auth/schemas/reset-password-schema'
-import z from 'zod'
 
-export const authProcedure = createTRPCRouter({
+export const authRouter = createTRPCRouter({
   createAccount: baseAuthProcedure
     .input(createAccountSchema)
     .mutation(async opts => {
