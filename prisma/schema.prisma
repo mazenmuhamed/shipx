@@ -15,6 +15,8 @@ model User {
   image         String?
   bio           String?
   posts         Post[]
+  likes         Like[]
+  comments      Comment[]
   sessions      Session[]
   accounts      Account[]
 
@@ -22,29 +24,6 @@ model User {
   updatedAt DateTime @updatedAt
 
   @@map("user")
-}
-
-model Post {
-  id      String      @id @default(uuid())
-  content String?
-  image   String?
-  userId  String
-  privacy PostPrivacy @default(PUBLIC)
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([userId], name: "idx_post_user")
-  @@index([createdAt], name: "idx_post_created_at")
-  @@map("post")
-}
-
-enum PostPrivacy {
-  PUBLIC
-  ONLY_ME
-  FRIENDS
 }
 
 model Session {
@@ -89,4 +68,60 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Post {
+  id       String      @id @default(uuid())
+  content  String?
+  image    String?
+  userId   String
+  privacy  PostPrivacy @default(PUBLIC)
+  likes    Like[]
+  comments Comment[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId], name: "idx_post_user")
+  @@index([createdAt], name: "idx_post_created_at")
+  @@map("post")
+}
+
+enum PostPrivacy {
+  PUBLIC
+  ONLY_ME
+  FRIENDS
+}
+
+model Like {
+  id        String   @id @default(uuid())
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@map("like")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  image     String?
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@index([userId], name: "idx_comment_user")
+  @@index([postId], name: "idx_comment_post")
+  @@index([createdAt], name: "idx_comment_created_at")
+  @@map("comment")
 }

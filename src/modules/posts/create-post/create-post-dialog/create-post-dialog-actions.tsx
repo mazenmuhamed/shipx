@@ -1,66 +1,35 @@
-'use client'
-
 import { toast } from 'sonner'
-import { useState } from 'react'
-import { ClientUploadedFileData } from 'uploadthing/types'
-import { Control, ControllerRenderProps } from 'react-hook-form'
+import { Control } from 'react-hook-form'
 import {
-  ImagesIcon,
-  Loader2Icon,
-  LucideProps,
-  MapPinIcon,
-  SmileIcon,
   TagsIcon,
+  SmileIcon,
+  ImagesIcon,
+  MapPinIcon,
+  LucideProps,
+  Loader2Icon,
 } from 'lucide-react'
 
+import { cn } from '@/lib/utils'
 import { UploadButton } from '@/lib/uploadthing'
 import { CreatePostSchema } from '@/modules/posts/schema/create-post-schema'
-import { cn, optimizeUploadedImageQuality } from '@/lib/utils'
 
 import { Button } from '@/components/ui/button'
 import { FormControl, FormField, FormItem } from '@/components/ui/form'
 
 import { ActionTooltip } from '@/modules/ui/action-tooltip'
+import { useUploadMedia } from '@/hooks/use-upload-media'
 
 type Porps = {
   control: Control<CreatePostSchema>
 }
 
 export function CreatePostDialogActions({ control }: Porps) {
-  const [isUploading, setIsUploading] = useState(false)
-
-  /**
-   * Handles the image upload process.
-   * It optimizes the image quality before uploading.
-   */
-  async function handleUploadImage(files: File[]) {
-    setIsUploading(true)
-    try {
-      const images = await Promise.all(
-        files.map(async file => {
-          return await optimizeUploadedImageQuality(file)
-        }),
-      )
-      return images
-    } catch (error) {
-      console.log('[UPLOAD_IMAGE_ERR]', error)
-      toast.error('Image upload failed, please try again.')
-
-      return []
-    }
-  }
-
-  /**
-   * Handles the completion of the upload process.
-   * It updates the form field with the uploaded image URL.
-   */
-  function handleUploadComplete(
-    res: ClientUploadedFileData<{ uploadedBy: string }>[],
-    field: ControllerRenderProps<CreatePostSchema, 'image'>,
-  ) {
-    field.onChange(res[0]?.ufsUrl)
-    setIsUploading(false)
-  }
+  const {
+    isUploading,
+    handleUploadBegin,
+    handleUploadImage,
+    handleUploadComplete,
+  } = useUploadMedia()
 
   return (
     <div className="flex h-14 items-center justify-between rounded-lg border px-4">
@@ -73,18 +42,18 @@ export function CreatePostDialogActions({ control }: Porps) {
             <FormItem>
               <FormControl>
                 <ActionTooltip
-                  asChild={false}
                   type="button"
+                  asChild={false}
                   tooltip="Photo/video"
                   disabled={isUploading}
                   className="focus-visible:border-ring focus-visible:ring-ring/50 rounded-full transition outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50"
                 >
                   <UploadButton
                     endpoint="imageUploader"
-                    onBeforeUploadBegin={handleUploadImage}
                     disabled={isUploading}
+                    onUploadBegin={handleUploadBegin}
+                    onBeforeUploadBegin={handleUploadImage}
                     className="ut-button:size-9 ut-allowed-content:hidden ut-button:rounded-full ut-button:hover:bg-accent ut-button:outline-none ut-button:text-green-600 hover:ut-button:text-green-500"
-                    onUploadBegin={() => setIsUploading(true)}
                     onClientUploadComplete={res =>
                       handleUploadComplete(res, field)
                     }

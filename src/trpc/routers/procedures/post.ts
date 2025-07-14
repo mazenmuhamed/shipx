@@ -22,11 +22,8 @@ export const postRouter = createTRPCRouter({
 
       return post
     }),
-  getPosts: protectedProcedure.query(async ({ ctx }) => {
-    const { id } = ctx.user
-
+  getPosts: protectedProcedure.query(async () => {
     const posts = await prisma.post.findMany({
-      where: { userId: id },
       orderBy: { createdAt: 'desc' },
       include: {
         user: {
@@ -36,6 +33,8 @@ export const postRouter = createTRPCRouter({
             image: true,
           },
         },
+        likes: true,
+        comments: true,
       },
     })
 

@@ -26,8 +26,8 @@ import {
 import { UserAvatar } from '@/modules/ui/user-avatar'
 
 import { PostPrivacyButton } from './post-privacy-button'
-import { CreatePostDialogActions } from './create-post-dialog-actions'
 import { CreatePostTextarea } from './create-post-textarea'
+import { CreatePostDialogActions } from './create-post-dialog-actions'
 
 type Props = {
   user: User
@@ -54,8 +54,8 @@ export function CreatePostDialog({ user, open, onOpenChange }: Props) {
     onSuccess: () => {
       form.reset()
       router.refresh()
-      utils.post.getPosts.invalidate()
       onOpenChange(false)
+      utils.post.getPosts.invalidate()
     },
     onError: error => {
       console.error('[CREATE_POST_ERR]', error)

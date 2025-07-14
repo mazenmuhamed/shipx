@@ -17,7 +17,7 @@ export async function HeaderActions() {
   })
 
   return (
-    <div className="flex w-full max-w-80 items-center justify-end gap-2">
+    <div className="flex w-full max-w-80 items-center justify-end gap-2 2xl:max-w-96">
       <ActionTooltip tooltip="menu">
         <Button
           disabled

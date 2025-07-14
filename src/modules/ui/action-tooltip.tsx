@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/tooltip'
 
 import { cn } from '@/lib/utils'
+import { forwardRef } from 'react'
 
 type Props = {
   asChild?: boolean
@@ -24,34 +25,42 @@ type Props = {
   contentClassName?: string
 }
 
-export function ActionTooltip({
-  type,
-  disabled,
-  children,
-  tooltip,
-  asChild,
-  onClick,
-  className,
-  contentClassName,
-  side = 'top',
-}: Props) {
-  return (
-    <Tooltip>
-      <TooltipTrigger
-        type={type}
-        asChild={asChild ?? true}
-        className={className}
-        onClick={onClick}
-        disabled={disabled}
-      >
-        {children}
-      </TooltipTrigger>
-      <TooltipContent
-        side={side}
-        className={cn('font-medium select-none', contentClassName)}
-      >
-        <p>{tooltip}</p>
-      </TooltipContent>
-    </Tooltip>
-  )
-}
+export const ActionTooltip = forwardRef<HTMLButtonElement, Props>(
+  (
+    {
+      type,
+      disabled,
+      children,
+      tooltip,
+      asChild,
+      onClick,
+      className,
+      contentClassName,
+      side = 'top',
+    },
+    ref,
+  ) => {
+    return (
+      <Tooltip>
+        <TooltipTrigger
+          ref={ref}
+          type={type}
+          asChild={asChild ?? true}
+          className={className}
+          onClick={onClick}
+          disabled={disabled}
+        >
+          {children}
+        </TooltipTrigger>
+        <TooltipContent
+          side={side}
+          className={cn('font-medium select-none', contentClassName)}
+        >
+          <p>{tooltip}</p>
+        </TooltipContent>
+      </Tooltip>
+    )
+  },
+)
+
+ActionTooltip.displayName = 'ActionTooltip'
