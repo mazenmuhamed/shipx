@@ -7,15 +7,15 @@ export function CreatePostAction() {
     <div className="flex w-full items-center [&_button]:flex-1 [&_button]:rounded-md">
       <Button variant="ghost" className="sm:gap-3">
         <RadioIcon className="text-rose-500 sm:size-[25px]" />
-        <span className="opacity-80">Live video</span>
+        <span className="text-[15px] font-normal opacity-80">Live video</span>
       </Button>
       <Button variant="ghost" className="sm:gap-3">
         <ImagesIcon className="text-green-500 sm:size-[22px]" />
-        <span className="opacity-80">Media</span>
+        <span className="text-[15px] font-normal opacity-80">Media</span>
       </Button>
       <Button variant="ghost" className="sm:gap-3">
         <ClapperboardIcon className="text-pink-500 sm:size-6" />
-        <span className="opacity-80">Reals</span>
+        <span className="text-[15px] font-normal opacity-80">Reals</span>
       </Button>
     </div>
   )

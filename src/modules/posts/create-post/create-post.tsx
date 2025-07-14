@@ -22,7 +22,7 @@ export function CreatePost({ user }: { user: User }) {
           className="h-10 grow cursor-pointer justify-baseline rounded-full font-normal"
           onClick={() => setIsOpen(true)}
         >
-          <span className="font-medium opacity-80">
+          <span className="opacity-80">
             What&apos;s on your mind, {user.name.split(' ')[0]}?
           </span>
         </Button>

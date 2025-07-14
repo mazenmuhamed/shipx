@@ -13,21 +13,32 @@ import {
 } from '@/components/ui/popover'
 
 import { ActionTooltip } from '../ui/action-tooltip'
+import { cn } from '@/lib/utils'
 
 type Props = {
   onEmojiSelect: (emoji: { native: string }) => void
   onCloseAutoFocus?: (event: Event) => void
+  className?: string
 }
 
-export function EmojiButton({ onEmojiSelect, onCloseAutoFocus }: Props) {
+export function EmojiButton({
+  onEmojiSelect,
+  onCloseAutoFocus,
+  className,
+}: Props) {
   const { theme } = useTheme()
 
   return (
     <Popover modal={true}>
       <ActionTooltip tooltip="Emoji">
         <PopoverTrigger asChild>
-          <Button size="icon" variant="ghost" className="group rounded-full">
-            <IconMoodSmile className="size-6 opacity-80 transition-opacity group-hover:opacity-100" />
+          <Button
+            type="button"
+            size="icon"
+            variant="ghost"
+            className={cn('group rounded-full [&_svg]:!size-6', className)}
+          >
+            <IconMoodSmile className="opacity-80 transition-opacity group-hover:opacity-100" />
           </Button>
         </PopoverTrigger>
       </ActionTooltip>

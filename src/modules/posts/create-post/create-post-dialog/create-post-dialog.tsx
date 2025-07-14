@@ -80,34 +80,39 @@ export function CreatePostDialog({ user, open, onOpenChange }: Props) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
+      <DialogContent className="!px-0">
+        <DialogHeader className="px-3">
           <DialogTitle className="text-center">Create post</DialogTitle>
           <DialogDescription className="hidden sm:inline-flex"></DialogDescription>
         </DialogHeader>
         <hr />
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleSubmit)}>
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-3">
-                <UserAvatar
-                  id={user.id}
-                  src={user.image}
-                  alt={user.name}
-                  className="size-11"
-                />
-                <div className="flex flex-col gap-1">
-                  <span className="text-[15px] font-medium">Mazen Mohamed</span>
-                  <PostPrivacyButton control={form.control} />
-                </div>
-              </div>
-              <CreatePostTextarea
-                name={user.name}
-                control={form.control}
-                value={form.watch('content')}
-                onEmojiSelect={handleEmojiSelect}
+          <form
+            onSubmit={form.handleSubmit(handleSubmit)}
+            className="flex flex-col gap-4"
+          >
+            <div className="flex items-center gap-3 px-5">
+              <UserAvatar
+                id={user.id}
+                src={user.image}
+                alt={user.name}
+                className="size-11"
               />
-              <CreatePostDialogActions />
+              <div className="flex flex-col gap-1">
+                <span className="text-[15px] font-medium">Mazen Mohamed</span>
+                <PostPrivacyButton control={form.control} />
+              </div>
+            </div>
+            <CreatePostTextarea
+              name={user.name}
+              control={form.control}
+              previewImage={form.watch('image')}
+              value={form.watch('content')}
+              onEmojiSelect={handleEmojiSelect}
+              onRemoveImage={() => form.setValue('image', null)}
+            />
+            <div className="flex flex-col gap-4 px-5">
+              <CreatePostDialogActions control={form.control} />
               <Button
                 type="submit"
                 disabled={!form.formState.isDirty || isPending}

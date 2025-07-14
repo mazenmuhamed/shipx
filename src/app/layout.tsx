@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
 import { Poppins as FontSans } from 'next/font/google'
 
+import { extractRouterConfig } from 'uploadthing/server'
+import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin'
+
 import { Toaster } from '@/components/ui/sonner'
 import { TRPCProvider } from '@/trpc/client'
 import { ThemeProvider } from '@/components/theme-provider'
+import { ourFileRouter } from '@/app/api/uploadthing/core'
 
 import './globals.css'
 
@@ -32,7 +36,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TRPCProvider>{children}</TRPCProvider>
+          <TRPCProvider>
+            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+            {children}
+          </TRPCProvider>
           <Toaster richColors />
         </ThemeProvider>
       </body>
